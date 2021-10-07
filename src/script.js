@@ -39,41 +39,41 @@ pointLight.position.z = 4;
 scene.add(pointLight);
 
 // Lights 2
-const pointLight2 = new THREE.PointLight(0xff0000, 2);
+const pointLight2 = new THREE.PointLight(0xfc5c7d, 2);
 pointLight2.position.set(-1.86, 1, -1.65);
 pointLight2.intensity = 10;
 scene.add(pointLight2);
 
-const light1 = gui.addFolder("Light 1");
+// const light1 = gui.addFolder("Light 1");
 
-light1.add(pointLight2.position, "x").min(-6).max(6).step(0.01);
-light1.add(pointLight2.position, "y").min(-3).max(3).step(0.01);
-light1.add(pointLight2.position, "z").min(-3).max(3).step(0.01);
-light1.add(pointLight2, "intensity").min(0).max(10).step(0.01);
+// light1.add(pointLight2.position, "x").min(-6).max(6).step(0.01);
+// light1.add(pointLight2.position, "y").min(-3).max(3).step(0.01);
+// light1.add(pointLight2.position, "z").min(-3).max(3).step(0.01);
+// light1.add(pointLight2, "intensity").min(0).max(10).step(0.01);
 
 // const pointLightHelper = new THREE.PointLightHelper(pointLight2, 1);
 // scene.add(pointLightHelper);
 
 // Lights 3
-const pointLight3 = new THREE.PointLight(0xe1ff, 2);
+const pointLight3 = new THREE.PointLight(0x6a82fb, 2);
 pointLight3.position.set(2.13, -3, -1.98);
 pointLight3.intensity = 6.8;
 scene.add(pointLight3);
 
-const light2 = gui.addFolder("Light 2");
+// const light2 = gui.addFolder("Light 2");
 
-light2.add(pointLight3.position, "x").min(-6).max(6).step(0.01);
-light2.add(pointLight3.position, "y").min(-3).max(3).step(0.01);
-light2.add(pointLight3.position, "z").min(-3).max(3).step(0.01);
-light2.add(pointLight3, "intensity").min(0).max(10).step(0.01);
+// light2.add(pointLight3.position, "x").min(-6).max(6).step(0.01);
+// light2.add(pointLight3.position, "y").min(-3).max(3).step(0.01);
+// light2.add(pointLight3.position, "z").min(-3).max(3).step(0.01);
+// light2.add(pointLight3, "intensity").min(0).max(10).step(0.01);
 
-const light2Color = {
-  color: 0xff000,
-};
+// const light2Color = {
+//   color: 0xff000,
+// };
 
-light2.addColor(light2Color, "color").onChange(() => {
-  pointLight3.color.set(light2Color.color);
-});
+// light2.addColor(light2Color, "color").onChange(() => {
+//   pointLight3.color.set(light2Color.color);
+// });
 
 // const pointLightHelper2 = new THREE.PointLightHelper(pointLight3, 1);
 // scene.add(pointLightHelper2);
@@ -152,6 +152,11 @@ function onDocumentMouseMove(event){
   mouseY = event.clientY - windowY;
 };
 
+const updateSphere = (event) => {
+    sphere.position.y = window.scrollY * 0.001;
+}
+window.addEventListener("scroll", updateSphere);
+
 const clock = new THREE.Clock();
 
 const tick = () => {
@@ -166,7 +171,7 @@ const tick = () => {
 
   sphere.rotation.y += 0.5 * (targetX - sphere.rotation.y);
   sphere.rotation.x += 0.05 * (targetY - sphere.rotation.x);
-  sphere.rotation.z += -0.05 * (targetY - sphere.rotation.x);
+  sphere.position.z += -0.05 * (targetY - sphere.rotation.x);
 
   // Update Orbital Controls
   // controls.update()
